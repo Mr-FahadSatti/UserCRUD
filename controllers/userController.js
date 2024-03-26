@@ -49,6 +49,7 @@ exports.updateWithoutToken = async (req,res)=>{
     } catch (error) {
         res.status(500).json({ message: 'Error updating user', error: error.message });
     }
+    console.log("user updated")
 
 }
 //get all users
