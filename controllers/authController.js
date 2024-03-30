@@ -12,7 +12,7 @@ exports.register = async (req,res) =>{
         console.log("jjjjjjjjjjjjjjjjjj")
         const{username,email,password}=req.body
         const salt = await bcrypt.genSalt(10)
-        const hashedpassword = await bcrypt.hashSync(password,salt)
+        const hashedpassword = bcrypt.hashSync(password,salt)
         const newUser= new User({
             username,email,password:hashedpassword
         })
@@ -31,6 +31,7 @@ exports.login = async (req,res) =>{
     console.log("entered in login function")
     try{
         const user = await User.findOne({email:req.body.email})
+        res.status(200).json(user)
         console.log("entered here")
         if(!user)
         {
